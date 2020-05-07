@@ -17,5 +17,7 @@ print('Hi from another dev')
 def hi_there():
 def hi_there():
 def hi_there():
+    
+    Updated readme for merge conflict demo
     print("Hi")
 
