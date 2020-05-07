@@ -7,3 +7,5 @@
 >I'm in the feature branch.
 
 Now I'm in the master branch.
+
+Made changes for git pull demo
