@@ -1,6 +1,6 @@
 # My Git Project
 
-> My code for the git project
+> My scary merge conflict.
 >Now I've changed a few things.
 
 
