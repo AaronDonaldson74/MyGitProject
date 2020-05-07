@@ -15,7 +15,9 @@ print('Hi Git')
 print('Hi from another dev')
 
 def hi_there():
+
 def hi_there():
+
 def hi_thUpdated readme for merge conflict demoere():
     
     Updated readme for merge conflict demo

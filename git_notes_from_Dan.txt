@@ -1,0 +1,206 @@
+Git Stuff
+Show Hidden Files
+files: exclude
+GitHub vs GitLab vs Bitbucket
+https://help.github.com/articles/set-up-git/
+https://git-scm.com/
+setting up a username
+git config --global user.name “yourUserName”
+checking to make sure what username you have setup
+git config --global user.name
+setting up an email
+git config --global user.email “youremail@email.com(opens in new tab)”
+checking to make sure what username you have setup
+git config --global user.email
+Git Branches
+The master branch is sacred. You won’t want to ever upload your branch until that branch your working on it complete. You can commit and push to your branch as many times as you want and then when its completly ready is when you want to merge it into the master.
+Check which branch your in
+git branch
+Create a new branch
+git checkout -b readme-styling
+Switch branches
+git checkout master
+Merge them up to GitHub. Make sure your in the master file when you merge these
+git merge readme-styling
+Git Ignore
+.gitignore Is the file name
+add any of the files you want to be ignored inside this file
+If you want a folder make sure you add a / to the end to include the folder and everything inside
+If you have files already being tracked before doing your .gitignore use this command to stop tracking it
+$ git rm --cached filename
+Git pull
+This will pull down the latest updates from GitHub onto your local files
+git pull
+How to Create a Local Git Repository
+mkdir my-git-project
+cd my-git-project
+touch my_file.py
+Open file in VScode
+Make sure your in the correct folder in your vscode terminal and use
+git init
+this will make a hidden file and if you want to see it you need to use the command ls
+-la or ls -a
+add my_file.py (if you want to add multiple files use git add .)
+git status
+git commit -m “Initial commit”
+git status
+How to Push a Local Git Repository to GitHub
+We need to decide where the push is going to go. We’re pushing it up to a remote location with the organ of. This isn’t pushing it but just setting it up.
+git remote add origin https://github.com/gleekzorp/my-git-project.git
+You can test to see if it worked with
+git remote -v
+This command is going to be pushing to the origin remote and you’re pushing to the master branch
+I had to put my username and password in. They say this will only have to be done once.
+git push -u origin master
+Victor and Andrew Git Cheat Sheet
+## Basic commands
+> `git init` **Creates a new git repository in the directory**
+> `git add <file name>` **Adds a specific file to staging**
+> `git add .` or `git add -A` **Adds the full directory and its contents to staging**
+> `git commit -m ‘Commit message here’` **Commits the file changes in staging and provides a description for the commit**
+> `git diff` **Analyze the differences between old files and ones that have been added to staging **
+## Branching
+> `git branch` **View all local branches**
+> `git checkout -b <branch name>` **Create a new branch and check into it**
+> `git branch -av` **View all branches local and remote**
+> `git checkout <branch name>` **Switch into the specified branch**
+> `git branch -d <branch name>` **Delete a specific branch**
+> `git push origin —delete <branch name>` **Delete a specific branch on the remote**
+> `git push origin <branch name>` **Push a branch to a remote repository**
+> `git merge <branch name>` **Merge branch into master branch (ensure that you’re inside the master branch)**
+## Stashing
+> `git stash` **Stashes changes in the .git file for temporaily hiding changed elements (make sure to run `git add` prior to stashing**
+> `git stash apply` **Returns the stashed items**
+> `git stash list` This will give you a list of stashes that are available
+> `git stash clear` This will clear out all the stashes that are available. Recommended to do this whenever you apply it.
+> `git stash apply “stash@{0}“`. this will apply the first stash that you have on your stash list
+Stash 
+- Git stash on your feature branch to temporarily store it
+- Switch to master and finish task and commit like normal
+- Switch back to feature branch. Type git stash list  to view all stashes 
+- Git stash show will show changes
+- Git stash apply will bring code back
+- Don’t forget to delete stash after you bring it back git stash clear
+## View History
+> `git log` **View previous commits, their messages, and ids**
+> `git log <file name>` **View who changed a specific file**
+> `git blame <file name>` **View who changed a specific file**
+## Reverting
+> `git reset --hard HEAD` **Remove all changes and revert to the previous commit**
+> `git checkout <file name>` **Remove changes made to a specific file, reverting it back to the previous commit**
+> `git checkout .` ** reverts back to the previous commit. If you added new files it will keep those files
+> $ git log (So you can find the commitVersionID you want, copy the versionID)
+> $ git checkout commitVersionID -b branchName
+## Merge Conflicts
+> When you encounter a merge conflict, first... don’t freak out. This just means you’re being given the ability to choose which code you want to choose to go with.
+### Sample Conflict
+- You run `git pull` on a repo that has changes that conflict with your local copy.
+- You’re presented with the following error message:
+```
+error: The following untracked working tree files would be overwritten by merge:
+README.md
+Please move or remove them before you merge.
+Aborting
+```
+### Natural Response
+![large](https://s3.amazonaws.com/devcamp-static/images/cagey.jpg)
+### How to Fix a Merge Conflict
+> It’s actually not that hard to fix merge conflicts, simply run `git status` and it will show you where the conflict exists. An example conflict might look like this:
+```ruby
+<<<<<<< HEAD
+# Git Homepage
+=======
+# git-guide
+> A guide for working with git
+>>>>>>> a1dfac148fb86311a453a9de338e4d7b9389ade5
+```
+The `<<<<<<< HEAD`, `=======`, and `>>>>>>>` symbols are simply showing you where the conflict is. You have the choice to pick what you want to keep, what you want to remove, etc. After picking out the implementation that you want you can run:
+- `git add .`
+- `git commit -m ‘some commit message’`
+- `git push`
+And you will be good to go.
+## Cloning
+> `git clone <link to repo>` **Clone a repository from a remote source, such as GitHub**
+> If you need the branch of a cloned repo. This will clone it, fetch all the branches, checkout the branch and change into it.
+git clone like usual
+git fetch —all
+git checkout nameOfBranch
+## Rebase
+> `git rebase master` **While working on a branch you can bring in committed changes from another branch. This is helpful for ensuring that your feature branch can be cleanly merged with the master branch**
+https://git-scm.com/docs/git-rebase
+https://medium.freecodecamp.org/git-rebase-and-the-golden-rule-explained-70715eccc372
+Never rebase a shared branch.
+Initial setup:
+`git init` creates the hidden .git folder
+`git add .` Adds/ groups all files together
+`git commit -m “Initial commit”`Explaining what happened at this point in time. Initial commit is the convention that we follow for the first push
+Create the remote repo
+Select the second the option and copy code to clipboard
+ `git remote add origin …`
+ `git push -u origin master`
+Pushing up to repo:
+`git add .` Grouping files together
+`git commit -m “Describe what just happened”`
+`git push` Push up to your repo
+Victor Notes
+Git Notes:
+To hide files 
+- Create a .gitignore file 
+- Add any files you want hidden to your gitignore. hideThis.js 
+- Check to see if file was successfully hidden using git status
+- If file is not hidden, make sure spelling is correct 
+- git rm -r --cached . Will remove any cached items. Do not do it on a regular basis  
+Can also hide full folders in gitignore
+- Inside .gitignore type folderName/
+Working with branches
+- Check what branch your on
+	git branch
+- Create a new branch 
+	git checkout -b branchName
+- switch branch
+	git checkout branchName
+- Merge branch 
+Always merge from master
+	git merge branchName
+Rebase 
+- Never rebase on a shared featured branch 
+- Only do it on your own branches 
+Stash 
+- Git stash on your feature branch to temporarily store it
+- Switch to master and finish task and commit like normal
+- Switch back to feature branch. Type git stash list  to view all stashes 
+- Git stash show will show changes
+- Git stash apply will bring code back
+- Don’t forget to delete stash after you bring it back git stash clear
+Difference between git pull and git fetch 
+- GIt pull brings down latest changes from GitHub and automatically applies them
+- Git fetch will pull down changes but will not automatically apply them. It will diverge your branches so your local master is different from your remote master
+- Git pull is a combo and git fetch and git merge. 
+- If you know there is going to be merge conflicts it’s best practice to git fetch then merge it manually as it gives your more control
+To fix git fetch (best practice)
+- Git merge origin/master will merge your local code with your remote. Write commit message
+- Git push
+How to delete branches locally and remotely 
+- Locally: git branch -d branchName
+- Remotely: Delete through GUI || git push origin --delete branchName
+How to undo file changes before committing 
+- Git checkout file_name
+	- This will revert the file back to its original state
+- Git checkout . 
+	- Tis will revert all files back to its original state
+How to Revert a Single File to a Previous Version in Git
+- Git checkout commitHash -- filePath 
+  - Git checkout f98asd98234987fa90834 -- my_file.py
+- Then just add and commit everything 
+Viewing a Version Commit for a Git 
+- Create a new branch with the commit you want to view 
+- Git checkout commitHash -b branchName 
+  - Git checkout f98as09c80982398 -b investigation 
+- Delete the branch ofter you’re done looking at it 
+	- git branch -d investigation 
+Revert an Entire Project Back to a Previous Version
+- git reset --hard your_commit_id
+  - Git reset - - hard f0982lkf082349
+- This will revert you back to a previous commit. If you try to push this up it will say you’re behind the master branch. You can force it up 
+  - git push -f origin master
+- This will delete commits ahead of you
