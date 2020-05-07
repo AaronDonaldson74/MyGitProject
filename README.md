@@ -1,6 +1,6 @@
 # My Git Project
 
-> My code for the git project
+> My cmy innosent changegit project
 >Now I've changed a few things.
 
 
